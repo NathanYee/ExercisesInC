@@ -1,6 +1,17 @@
 /*
-* This program will serve as a basic card counting tool
-* The method of indentation is: select all - auto indentation
+* cards.c
+*
+* Software Systems - Olin College of Engineering
+* License - MIT License
+* Homework 1
+*
+* This program will "count" cards based on user inputted cards based on these
+* rules: 2-6 = +1, 7-9 = 0, 10-Ace = -1
+*
+* Usage: ./cards
+*        Q
+*
+* Where Q is the user entering a "Queen" followed by a carriage return
 */
 
 #include <stdio.h>
