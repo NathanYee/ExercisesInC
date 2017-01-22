@@ -28,6 +28,7 @@ int main() {
 
   while (card_name[0] != 'X') {
     // Keep the loop going until the user stops the program with 'X'
+    int val = 0;
 
     // ask user for the card name
     puts("Enter the card_name: ");
@@ -35,7 +36,8 @@ int main() {
 
     // use the card_name to get the value of the card
     // val = 0 means invalid card
-    int val = getVal(card_name);
+
+    val = getVal(card_name);
     if (val == 0) {
       continue;
     }
