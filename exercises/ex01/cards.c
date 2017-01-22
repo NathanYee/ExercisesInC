@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int updateCount(int val, int count);
+
 int main() {
   char card_name[3];
   int count = 0;
@@ -33,12 +35,17 @@ int main() {
         continue;
       }
     }
-    if ((val >= 2) && (val < 7)) {
-      count++;
-    } else if ((val == 10) || (val == 11)) {
-      count--;
-    }
+    count = updateCount(val, count);
     printf("Current count: %i\n", count);
   }
   return 0;
+}
+
+int updateCount(int val, int count) {
+  if ((val >= 2) && (val < 7)) {
+    count++;
+  } else if ((val == 10) || (val == 11)) {
+    count--;
+  }
+  return count;
 }
