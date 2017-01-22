@@ -10,6 +10,8 @@ int updateCount(int val, int count);
 int getVal(char card_name[]);
 
 int main() {
+  // Keeps the "count" based on user inputted cards
+
   char card_name[3]; //Need 3 chars in case of '10\0'
   int count = 0;
 
@@ -31,6 +33,7 @@ int main() {
     count = updateCount(val, count);
     printf("Current count: %i\n", count);
   }
+
   return 0;
 }
 
