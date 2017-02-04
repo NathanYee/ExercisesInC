@@ -27,20 +27,16 @@ These were my semester learning goals that I made during sprint 0:
     As scrum master, I'm a little afraid that we aren't moving fast enough in both the textbook and the project.
 
 
-Links to Head First C exercises
-
-List the chapters you worked on during this sprint and provide links to your solutions (code, Markdown notes/answers, etc). If you did not complete any HFC exercises during this sprint, explain what you did instead. Since this work also lives within your ExercisesInC repository, you can use relative links (Links to an external site.) for portability.
+## Links to Head First C exercises
 
 Read:
 * Chapter 1
-  * ex01
-    * [ch1 work/notes/exercises](../exercises/ex01)
-    * Did all required tasks. I still don't know how to read assembly.
+  * [ch1 work/notes/exercises](../exercises/ex01)
+  * Did all required tasks. I still don't know how to read assembly.
 * Chapter 2
-  * exo2
-    * Spent 3ish hours on stack.c but not finished.
-    * [ch2 exercises](../exercises/ex02)
-    * [ch2 work/notes](../hfc/2ch)
+  * Spent 3ish hours on stack.c but not finished.
+  * [ch2 exercises](../exercises/ex02)
+  * [ch2 work/notes](../hfc/2ch)
 * Chapter 2.5
   * Read and did examples from textbook. No exercise work yet.
   * [ch2.5 work/notes](../hfc/2.5ch)
@@ -48,16 +44,33 @@ Read:
 
 
 
-Think OS reading question answers
+## Think OS reading question answers
 
 Read: TOS 1-3
 [TOS Questions](../reading_questions/thinkos.md)
 
 
-Exam question(s) and solution
+## Exam question(s) and solution
 
-One of the best ways to learn is to teach someone else, and a good way to check that you truly understand a concept is to pose your own question testing it. In each reflection, you will write (at least one) original, non-trivial question testing the material you read during the previous sprint, along with your solution. You should also indicate what reading(s) your question draws upon.
+How do you copy the contents of an array into another array. Why does the code below not work?
 
-These questions may be helpful to use within your team to help prepare for sprint reviews. We will also share the compiled set of questions as a study guide for the midterm and final exams.
+    #include <stdio.h>
 
-If you'd like to see exam questions from previous years for inspiration and to calibrate appropriate difficulty, check out https://sites.google.com/site/softwaresystems2015/quizzes (Links to an external site.)
+    int main() {
+      int foo[3] = {1,2,3};
+      int bar[3];
+
+      for (int i = 0; i < 3; i++) {
+        printf("%d\n", foo[i]);
+      }
+
+      foo = bar;
+      
+      for (int i = 0; i < 3; i++) {
+        printf("%d\n", bar[i]);
+      }
+
+      return 0;
+    }
+
+The above code does not work because you can just say that an array is equal to another array. There are two potential solutions here. One, you could make a assign a pointer to point to bar. Or, you could write a for loop to iterate through values of foo and assign them to the corresponding indexes of bar.
