@@ -25,7 +25,7 @@ the error messages you get might look very different.  Why?
 * Often times the compiler will spit out a whole bunch of error messages when you misspell a variable name. Only the first error message will be the relevant one.
 
 7) What is a segmentation fault?
-* Segmentation fault occurs when you try to read or write memory in such a way that isn't "allowed". 
+* Segmentation fault occurs when you try to read or write memory in such a way that isn't "allowed".
 
 ## Chapter 2
 
@@ -33,14 +33,19 @@ the error messages you get might look very different.  Why?
 ### Processes
 
 1) Give a real-world example of virtualization (ideally not one of the ones in the book).
+* Virtual private network.
 
 2) What is the difference between a program and a process?
+* Processes are the software object that isolates programs. Programs are usually isolated from each other so they don't negatively affect each other.
 
 3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
+* The operating system uses process abstraction to make sure that the processes don't interfere with each other. For example, in a 64 bit system, each program has virtual memory addresses from 0x000000 to 0xFFFFFF. This virtual memory allows both processes to use memory address 0x000000 as they are different physical memory addresses. Process abstraction also make sure that processes don't write data to the same storage location.
 
 4) What is the kernel?
+* The kernel is responsible for the core parts of the operating system, such as creating threads.
 
 5) What is a daemon?
+* A daemon is a process that runs in the background. A commonly used daemon is the "cron daemon" used to run other programs at specified times.
 
 
 ## Chapter 3
