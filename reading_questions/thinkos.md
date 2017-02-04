@@ -39,7 +39,7 @@ the error messages you get might look very different.  Why?
 * Processes are the software object that isolates programs. Programs are usually isolated from each other so they don't negatively affect each other.
 
 3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
-* The operating system uses process abstraction to make sure that the processes don't interfere with each other. For example, in a 64 bit system, each program has virtual memory addresses from 0x000000 to 0xFFFFFF. This virtual memory allows both processes to use memory address 0x000000 as they are different physical memory addresses. Process abstraction also make sure that processes don't write data to the same storage location.
+* The operating system uses process abstraction to make sure that the processes don't interfere with each other. For example, in a 32 bit system, each program has virtual memory addresses from 0x0000000 to 0xfffffff. This virtual memory allows both processes to use memory address 0x0000000 as they are different physical memory addresses. Process abstraction also make sure that processes don't write data to the same storage location.
 
 4) What is the kernel?
 * The kernel is responsible for the core parts of the operating system, such as creating threads.
@@ -54,21 +54,36 @@ the error messages you get might look very different.  Why?
 ### Virtual memory
 
 1) The Georgian alphabet has 33 letters.  How many bit are needed to specify a letter?
+* b >= log2(33)
+* b = 6
 
 2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
 Ignoring the details of the encoding scheme, how many different characters can be represented?
+* 2^32 = 4294967296
+* 4294967296 different characters
 
 3) What is the difference between "memory" and "storage" as defined in Think OS?
+* "memory" refers to volatile memory such as RAM.
+* "storage" refers to non-volatile memory such as an SSD or HDD.
 
 4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
+* GB is 10^9 bytes
+* GiB is 10^9 bits
+* 1 byte = 8 bits
+* 12.5% of 1 GB = 1 GiB
 
 5) How does the virtual memory system help isolate processes from each other?
+* In a 32 bit system, each program has virtual memory addresses from 0x0000000 to 0xfffffff. This virtual memory allows both processes to use memory address 0x0000000 as they are different physical memory addresses
 
 6) Why do you think the stack and the heap are usually located at opposite ends of the address space?
+* It is unknown how much data the stack and heap are going to use. We start them at opposite ends of the memory address space to make sure that they don't interfere with one other.
 
 7) What Python data structure would you use to represent a sparse array?
+* !
+* Dictionary of Keys based sparse matrix.
 
 8) What is a context switch?
+* A context switch is when the operating system interrupts a running process, saves its state, and then switches to another process.
 
 In this directory, you should find a subdirectory named `aspace` that contains `aspace.c`.  Run it on your computer and compare your results to mine.
 
