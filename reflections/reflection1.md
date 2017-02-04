@@ -47,7 +47,7 @@ Read:
 Think OS reading question answers
 
 List the chapters you worked on during this sprint and provide your answers to reading questions, either inline or as links to separate Markdown documents. If you did not complete any TOS exercises during this sprint, explain what you did instead.
-
+[TOS Questions](../reading_questions/thinkos.md)
 
 
 Exam question(s) and solution
