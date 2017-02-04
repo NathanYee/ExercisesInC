@@ -73,4 +73,4 @@ How do you copy the contents of an array into another array. Why does the code b
       return 0;
     }
 
-The above code does not work because you can just say that an array is equal to another array. There are two potential solutions here. One, you could make a assign a pointer to point to bar. Or, you could write a for loop to iterate through values of foo and assign them to the corresponding indexes of bar.
+The above code does not work because you can just say that an array is equal to another array. To copy foo into bar, you could write a for loop to iterate through values of foo and assign them to the corresponding indexes of bar.
