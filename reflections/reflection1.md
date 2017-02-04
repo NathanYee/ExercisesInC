@@ -34,13 +34,16 @@ List the chapters you worked on during this sprint and provide links to your sol
 Read:
 * Chapter 1
   * ex01
+    * [ch1 work/notes/exercises](../exercises/ex01)
     * Did all required tasks. I still don't know how to read assembly.
 * Chapter 2
   * exo2
     * Spent 3ish hours on stack.c but not finished.
-    * [ch2 work/notes](../hfc)
+    * [ch2 exercises](../exercises/ex02)
+    * [ch2 work/notes](../hfc/2ch)
 * Chapter 2.5
   * Read and did examples from textbook. No exercise work yet.
+  * [ch2.5 work/notes](../hfc/2.5ch)
 
 
 
