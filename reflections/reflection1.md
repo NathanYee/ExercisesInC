@@ -24,7 +24,15 @@ These were my semester learning goals that I made during sprint 0:
 * stay organized as team
   * We have stayed organized and have kept up consistent team communication and Trello usage.
     Stand-ups and next meeting planning have also proved necessary to stay together.
-    As scrum master, I'm a little afraid that we aren't moving fast enough in both the textbook and the project.
+
+Project
+* Got Arduino to play sound.
+* Fixed circuit that allows safe speaker playing and amplification.
+* Got everyone to compile and upload code to Arduino.
+* Fixed all compile errors in our copy and pasted make article.
+* Learned how the Arduino registers work to implement deviceOpen().
+* Made bash script that deletes all old compilation files and re-compiles
+and uploads to Arduino.
 
 
 ## Links to Head First C exercises
@@ -65,7 +73,7 @@ How do you copy the contents of an array into another array. Why does the code b
       }
 
       foo = bar;
-      
+
       for (int i = 0; i < 3; i++) {
         printf("%d\n", bar[i]);
       }
