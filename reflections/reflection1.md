@@ -46,8 +46,8 @@ Read:
 
 ## Think OS reading question answers
 
-Read: TOS 1-3
-[TOS Questions](../reading_questions/thinkos.md)
+Read TOS 1-3  
+[Did TOS reading questions 1-3](../reading_questions/thinkos.md)
 
 
 ## Exam question(s) and solution
@@ -65,7 +65,7 @@ How do you copy the contents of an array into another array. Why does the code b
       }
 
       foo = bar;
-      
+
       for (int i = 0; i < 3; i++) {
         printf("%d\n", bar[i]);
       }
