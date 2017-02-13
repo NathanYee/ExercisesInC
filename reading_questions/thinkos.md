@@ -120,12 +120,12 @@ file you wrote is not there.  What happened?
 * Inodes are better at storing large files. Since inodes can be filled with pointers to more inodes, the maximum file size is extremely large.
 
 6) What is overhead?  What is fragmentation?
-* Overhead - storage taken by the datastructure
+* Overhead - storage taken by the data structure
 * Fragmentation - unused space in a block.
 
 7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
 * Standardization is a powerful.
-*
+* 
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then
