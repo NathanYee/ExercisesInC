@@ -54,8 +54,8 @@ Read:
 
 ## Think OS reading question answers
 
-Read: TOS 1-3
-[TOS Questions](../reading_questions/thinkos.md)
+Read TOS 1-3  
+[Did TOS reading questions 1-3](../reading_questions/thinkos.md)
 
 
 ## Exam question(s) and solution
