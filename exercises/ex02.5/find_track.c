@@ -40,22 +40,22 @@ void find_track_regex(char pattern[])
 {
   /* Prints tracks that satisfy user specified pattern */
 
-  regex_t emma;
+  regex_t myRegex;
   regmatch_t matches[NUM_TRACKS];   /* Array of matches */
 
   /* Compile regular expression with pattern */
   int status;
-  status = regcomp(&emma,pattern,REG_EXTENDED);
+  status = regcomp(&myRegex,pattern,REG_EXTENDED);
   printf("Validity of regex (0 => OK): %d\n",status);
 
   for (int i=0; i<NUM_TRACKS; i++) {
-    status = regexec(&emma,tracks[i],NUM_TRACKS,matches,0);
+    status = regexec(&myRegex,tracks[i],NUM_TRACKS,matches,0);
     if (status == 0) {
       printf("Track %i: '%s'\n", i, tracks[i]);
     }
   }
 
-  regfree(&emma);
+  regfree(&myRegex);
 }
 
 // Truncates the string at the first newline, if there is one.
