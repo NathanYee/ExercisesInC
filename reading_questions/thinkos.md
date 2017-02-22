@@ -125,7 +125,7 @@ file you wrote is not there.  What happened?
 
 7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
 * Standardization is a powerful.
-* 
+* Subtle errors in file systems can lead to powerful exploits.
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then
