@@ -102,20 +102,30 @@ How much space is there between them?  Hint: Google knows how to subtract hexade
 
 1) What abstractions do file systems provide?  Give an example of something that is logically
 true about files systems but not true of their implementations.
+* File systems give the illusion that files are stored in a nice tree like structure. In reality, operating systems store files in locations, and then record where the file was stored.
 
 2) What information do you imagine is stored in an `OpenFileTableEntry`?
+* A position in the file that keeps track of where it was read. A starting address for the first byte in the file.
 
 3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
+* Block transfers - the difference between loading a single byte and the additional time to load an 8KiB is almost zero. So the operating system can sometimes to additional work on the remaining 8KiB of data. Prefecting - if the operating system can predict that it needs to read a block, it will prefetch the block before the program has actually requested it. Buffering - if many changes are made to the same byte of memory, the operating system will wait until the final change before it writes it to the disk. Caching - the operating system keeps around blocks that it has recent used in faster memory such as RAM.
 
 4) Suppose your program writes a file and prints a message indicating that it is done writing.  
 Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the
 file you wrote is not there.  What happened?
+* The IO is buffered. fprintf will only write to a file when you close the file. You can use fflush(fp) to clear the buffer and write to the file.
 
 5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
+* It can be easier to do data recovery with a File Allocation Table. For example, if you want to recover jpgs off of an SD card, the bytes that make up the jpgs will be stored contiguously across blocks. This allows for much easier data recovery.
+* Inodes are better at storing large files. Since inodes can be filled with pointers to more inodes, the maximum file size is extremely large.
 
 6) What is overhead?  What is fragmentation?
+* Overhead - storage taken by the data structure
+* Fragmentation - unused space in a block.
 
 7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
+* Standardization is a powerful.
+* 
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then
