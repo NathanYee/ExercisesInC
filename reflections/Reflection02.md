@@ -2,13 +2,13 @@
 title: Reflection02
 layout: post
 author: nathanyee
-permalink: /reflection02/
+permalink: /Reflection02/
 source-id: 1SfL5Ce4euMYvMbqX56RQOa2vXcbgBrSoCC7jMQx6IFY
 published: true
 ---
-Reflection 1 - Software Systems - Nathan Yee
+# Reflection 1 - Software Systems - Nathan Yee
 
-# Written sprint reflection
+## Written sprint reflection
 
 * These were my semester learning goals that I made during sprint 0:
 
