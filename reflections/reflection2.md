@@ -10,7 +10,7 @@ published: true
 
 # High level notes
 
-The majority of work done in this sprint was done in the first week. I lost 4 days due to OCO's New York Trip. As a result, a lot of more recent exercises and readings aren’t done yet, but I should have the time to them in the upcoming days.
+The majority of work done in this sprint was done in the first week. I lost 4 days due to OCO's New York Trip. As a result, I feel behind in the class right now. I don’t think I’m in the danger zone and should be able to recover throughout the rest of the sprint.
 
 # Written sprint reflection
 
