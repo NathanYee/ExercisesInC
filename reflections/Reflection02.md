@@ -10,9 +10,9 @@ published: true
 
 ## Written sprint reflection
 
-* These were my semester learning goals that I made during sprint 0:
+These were my semester learning goals that I made during sprint 0:
 
-get good at C,
+* get good at C,
 
     * Read Head First C and worked through textbook examples to both internalize and have copy and paste-able examples of C code.
 
