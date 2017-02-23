@@ -6,41 +6,43 @@ permalink: /reflection2/
 source-id: 1SfL5Ce4euMYvMbqX56RQOa2vXcbgBrSoCC7jMQx6IFY
 published: true
 ---
-Reflection 2 - Software Systems - Nathan Yee
+# Reflection 2 - Software Systems - Nathan Yee
+
+# High level notes
+
+The majority of work done in this sprint was done in the first week. I lost 4 days due to OCO's New York Trip. As a result, a lot of more recent exercises and readings aren’t done yet, but I should have the time to them in the upcoming days.
 
 # Written sprint reflection
 
 These were my semester learning goals that I made during sprint 0:
 
-* get good at C,
+* Get good at C,
 
-    * Read Head First C and worked through textbook examples to both internalize and have copy and paste-able examples of C code.
+    * Starting to get a lot more comfortable about C in general. I am now a lot better at dealing with files, error handling, arguments, and makefile workflow. I feel like our project has taught me a lot about registers and not so much about C.
 
-* internalize memory management
+* Internalize memory management
 
-    * Head first C chapter 2
+    *  Was hoping to make more progress here. I still don't feel very strong with how C uses memory. I still made a small amount of progress - which is still progress.
 
-    * Still not feeling the best here. I need to play around with memory a lot more.
+* Do something robotics related
 
-* do something robotics related
+    * We started making use of Serial a lot more for our project. This will definitely help work with embedded systems later.
 
-    * No progress here. As I'm learning more about robotics in my other class, I will need to reevaluate this goal.
+* Develop a comfortable work flow
 
-* develop a comfortable work flow
+    * Learned about makefiles. They are really useful.
 
-    * Set up atom with packages (vim-mode-plus, gcc-make-run) to help my development speed. As of right now, I'm finding these packages useful for developing speed. I am still looking for a proper debugger.
+* Collaborate and work in parallel
 
-* collaborate and work in parallel
+    * This sprint we were able to split our project into more parallel tasks. Let's continue the trend - divide and conquer! As long as we don’t get lost... 
 
-    * When our team is meeting, we are able to efficiently collaborate and work together. Of more concern, we haven't had any small meetings between less than 3 members of the team. I feel like more smaller meetings would allow us to work on the project at a much faster rate.
+* Work with low resource mobile processors
 
-* work with low resource mobile processors
+    * Not huge progress since last time. I want to make full use of the 16 bit timer to have much higher frequency precision.
 
-    * Our choice to use an Arduino is helping here. To gain more experience with low resource computers, I will push the Arduino to its absolute limits for our one-bit DAC.
+* Stay organized as team
 
-* stay organized as team
-
-    * We have stayed organized and have kept up consistent team communication and Trello usage. Stand-ups and next meeting planning have also proved necessary to stay together.
+    * Falling a little behind here. We are still on the same page but it isn't as good as it used to be.
 
 # Project
 
@@ -89,6 +91,12 @@ These were my semester learning goals that I made during sprint 0:
 * Read TOS 4 and did reading questions
 
 * [Reading Questions](https://github.com/NathanYee/ExercisesInC/blob/master/reading_questions/thinkos.md)
+
+# Little Book of Semaphores
+
+* Read chapters 1-2 but haven't started on exercises
+
+* [Link to forked repository!](https://github.com/NathanYee/LittleBookOfSemaphores)
 
 # Exam question(s) and solution
 
