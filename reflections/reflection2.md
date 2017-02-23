@@ -14,25 +14,25 @@ The majority of work done in this sprint was done in the first week. I lost 4 da
 
 # Written sprint reflection
 
-These were my semester learning goals that I made during sprint 0:
+These are my current learning goals.
 
-* Get good at C,
+* Get comfortable at writing and thinking about C,
 
     * Starting to get a lot more comfortable about C in general. I am now a lot better at dealing with files, error handling, arguments, and makefile workflow. I feel like our project has taught me a lot about registers and not so much about C.
 
-* Internalize memory management
+* Internalize C memory management.
 
     *  Was hoping to make more progress here. I still don't feel very strong with how C uses memory. I still made a small amount of progress - which is still progress.
 
-* Do something robotics related
+* Work on projects that can integrate with robotics.
 
     * We started making use of Serial a lot more for our project. This will definitely help work with embedded systems later.
 
-* Develop a comfortable work flow
+* Develop comfortable workflow in the context of C
 
     * Learned about makefiles. They are really useful.
 
-* Collaborate and work in parallel
+* Get better at assigning work in projects.
 
     * This sprint we were able to split our project into more parallel tasks. Let's continue the trend - divide and conquer! As long as we don’t get lost... 
 
