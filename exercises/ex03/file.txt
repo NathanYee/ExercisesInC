@@ -1,0 +1,4 @@
+total 44
+-rw-rw-r-- 1 nathan nathan 1119 Feb 21 22:18 ex03.md
+-rwxrwxr-x 1 nathan nathan 8912 Mar  1 11:28 tee
+-rw-rw-r-- 1 nathan nathan 1156 Mar  1 11:28 tee.c
