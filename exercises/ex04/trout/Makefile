@@ -1,5 +1,5 @@
 trout: trout.o util.o
-	gcc trout.o util.o -o trout
+	gcc trout.o util.o -Wall -o trout
 
 trout.o: trout.c trout.h
 	gcc -c trout.c
