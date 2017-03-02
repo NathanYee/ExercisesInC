@@ -13,7 +13,7 @@ typedef struct {
 
 int main(void) {
   // valid
-  // margarita m = {2.0, 1.0, {0.5}};
+  margarita m = {2.0, 1.0, {0.5}};
   // margarita m = {2.0, 1.0, {.lime_pieces=1}};
   // margarita m = {2.0, 1.0, {1}};
   // margarita m = {2.0, 1.0, {2}};
