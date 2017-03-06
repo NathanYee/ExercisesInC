@@ -192,7 +192,7 @@ Also consider reading [this USENIX paper](https://www.usenix.org/legacy/event/us
 
 	int before = 12;
 
-int after = (before ^ -1) + 1;
+	int after = (before ^ -1) + 1;
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a sign bit or two's complement?
 
