@@ -190,7 +190,9 @@ Also consider reading [this USENIX paper](https://www.usenix.org/legacy/event/us
 
 2) Write a C expression that computes the two's complement of 12 using the XOR bitwise operator. Try it out and confirm that the result is interpreted as -12.
 
-* I get -2147483635 which isn't all that unexpected.
+	int before = 12;
+
+int after = (before ^ -1) + 1;
 
 3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a sign bit or two's complement?
 
