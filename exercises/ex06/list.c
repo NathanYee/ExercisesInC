@@ -65,6 +65,12 @@ int pop(Node **list) {
  * val: value to add
  */
 void push(Node **list, int val) {
+    Node* head = *list;
+    printf("val to insert: %d\n", val);
+    Node* newHead = make_node(val, head);
+    printf("new head val: %d\n", newHead->val);
+    *list = newHead;
+
     // FILL THIS IN!
 }
 
