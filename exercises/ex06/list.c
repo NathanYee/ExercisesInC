@@ -54,8 +54,9 @@ void print_list(Node **list) {
  * returns: int or -1 if the list is empty
  */
 int pop(Node **list) {
-    // FILL THIS IN!
-    return 0;
+    Node* head = *list;
+    *list = head->next;
+    return head->val;
 }
 
 
