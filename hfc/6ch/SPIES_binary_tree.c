@@ -45,6 +45,7 @@ int main()
   do {
     current = start_node;
     while (1) {
+      // answer yes to question
       if (yes_no(current->question))
       {
         if (current->yes) {
