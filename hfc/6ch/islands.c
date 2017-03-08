@@ -7,9 +7,9 @@ typedef struct island{
   struct island *next;
 } island;
 
-void display(island *start)
+void display(island **start)
 {
-  island* i = start;
+  island* i = *start;
 
   for (; i != NULL; i = i->next){
     printf("Name: %s open: %s-%s\n", i->name, i->opens, i->closes);
@@ -31,7 +31,9 @@ int main() {
   isla_nublar.next = &skull;
   skull.next = &shutter;
 
-  display(&amity);
+  island* ptHead = &amity; //pointer that points to the address of head
+
+  display(&ptHead);
 
   return 0;
 }
