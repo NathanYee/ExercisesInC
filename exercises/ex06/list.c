@@ -17,14 +17,14 @@ typedef struct node {
 
 
 /* Makes a new node structure.
- * 
+ *
  * val: value to store in the node.
  * next: pointer to the next node
  *
  * returns: pointer to a new node
  */
 Node *make_node(int val, Node *next) {
-    Node *node = malloc(sizeof(Node));
+    Node* node = malloc(sizeof(Node));
     node->val = val;
     node->next = next;
     return node;
@@ -32,11 +32,11 @@ Node *make_node(int val, Node *next) {
 
 
 /* Prints the values in a list.
- * 
+ *
  * list: pointer to pointer to Node
  */
 void print_list(Node **list) {
-    Node *current = *list;
+    Node* current = *list;
 
     printf("[ ");
     while (current != NULL) {
@@ -48,7 +48,7 @@ void print_list(Node **list) {
 
 
 /* Removes and returns the first element of a list.
- * 
+ *
  * list: pointer to pointer to Node
  *
  * returns: int or -1 if the list is empty
@@ -60,7 +60,7 @@ int pop(Node **list) {
 
 
 /* Adds a new element to the beginning of the list.
- * 
+ *
  * list: pointer to pointer to Node
  * val: value to add
  */
@@ -70,7 +70,7 @@ void push(Node **list, int val) {
 
 
 /* Removes the first element with the given value
- * 
+ *
  * Frees the removed node.
  *
  * list: pointer to pointer to Node
@@ -87,7 +87,7 @@ int remove_by_value(Node **list, int val) {
 /* Reverses the elements of the list.
  *
  * Does not allocate or free nodes.
- * 
+ *
  * list: pointer to pointer to Node
  */
 void reverse(Node **list) {
