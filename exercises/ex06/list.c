@@ -55,6 +55,9 @@ void print_list(Node **list) {
  */
 int pop(Node **list) {
     Node* head = *list;
+    if (head == NULL){
+      return -1;
+    }
     *list = head->next;
     return head->val;
 }
@@ -86,7 +89,24 @@ void push(Node **list, int val) {
  * returns: number of nodes removed
  */
 int remove_by_value(Node **list, int val) {
-    // FILL THIS IN!
+    Node* current = *list;
+    Node* previous = NULL;
+
+    while (current != NULL) {
+        if (current->val == val){
+          printf("%d ", current->val);
+          if (previous == NULL){
+            puts("remove head");
+            printf("%d\n", pop(&current));
+          } else {
+            printf("remove it!!!\n");
+            previous->next  = current->next;
+            free(current);
+          }
+        }
+        previous = current;
+        current = current->next;
+    }
     return 0;
 }
 
