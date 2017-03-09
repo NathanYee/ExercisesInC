@@ -118,7 +118,16 @@ int remove_by_value(Node **list, int val) {
  * list: pointer to pointer to Node
  */
 void reverse(Node **list) {
-    // FILL THIS IN!
+  Node* previous = NULL;
+  Node* current = *list;
+  Node* next;
+  while (current != NULL) {
+    next = current->next;
+    current->next = previous;
+    previous = current;
+    current = next;
+  }
+  *list = previous;
 }
 
 
