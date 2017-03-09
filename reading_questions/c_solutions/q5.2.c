@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <limits.h>
 
-//assumes little endian
+//prints the bits of a number. This lets me check that
+// -1 = 1111 1111 1111 1111 1111 1111 1111 1111 in binary
+
 void printBits(size_t const size, void const * const ptr)
 {
   unsigned char *b = (unsigned char*) ptr;
