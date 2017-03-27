@@ -190,6 +190,8 @@ Also consider reading [this USENIX paper](https://www.usenix.org/legacy/event/us
 
 2) Write a C expression that computes the two's complement of 12 using the XOR bitwise operator. Try it out and confirm that the result is interpreted as -12.
 
+* The binary representation of -1 is 1111 1111 1111 1111 1111 1111 1111 1111
+
 	int before = 12;
 
 	int after = (before ^ -1) + 1;
@@ -208,17 +210,31 @@ As a challenge, you can make a faster version by reading the string 32 or 64 bit
 
 1) Which memory management functions would you expect to take constant time? Which ones take time proportional to the size of the allocated chunk?
 
+* Constant time: malloc, free - no iterating through arrays
+
+* Proportional to size: calloc, realloc - have to iterate through array to set bytes to 0 or to copy values
+
 2) For each of the following memory errors, give an example of something that might go wrong:
 
 a) Reading from unallocated memory.
 
+* Segmentation fault.
+
 b) Writing to unallocated memory.
+
+* Can write over malloc data structures.
 
 c) Reading from a freed chunk.
 
+* Something writes over the memory later and causes problems.
+
 d) Writing to a freed chunk.
 
+* Something writes over the memory later and causes problems.
+
 e) Failing to free a chunk that is no longer needed.
+
+* Memory leak.
 
 3) Run
 
@@ -227,6 +243,8 @@ ps aux --sort rss
 to see a list of processes sorted by RSS, which is "resident set size", the amount of physical memory a process has. Which processes are using the most memory?
 
 4) What's wrong with allocating a large number of small chunks? What can you do to mitigate the problem?
+
+* Malloc requires at least 16 bytes for boundary tags. So, malloc is not very efficient at allocating a large number of small chunks. It can be better to allocate the small chunks as arrays.
 
 If you want to know more about how malloc works, read [Doug Lea's paper about dlmalloc](http://gee.cs.oswego.edu/dl/html/malloc.html)
 
