@@ -74,8 +74,6 @@ void push(Node **list, int val) {
     Node* newHead = make_node(val, head);
     printf("new head val: %d\n", newHead->val);
     *list = newHead;
-
-    // FILL THIS IN!
 }
 
 
