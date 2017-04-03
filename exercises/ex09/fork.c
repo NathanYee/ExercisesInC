@@ -34,7 +34,8 @@ void child_code(int i)
 {
   sleep(i);
   printf("Hello from child %d.\n", i);
-  exit(i);
+  exit(i); // Child process stops running the for loop
+           // because we exit the child process here
 }
 
 // main takes two parameters: argc is the number of command-line
@@ -62,7 +63,9 @@ int main(int argc, char *argv[])
 
     // create a child process
     printf("Creating child %d.\n", i);
-    pid = fork();
+    pid = fork(); // both processes continue from here
+                  // pid is zero for child processes
+                  // pid is nonzero for parent process
 
     /* check for an error */
     if (pid == -1) {
@@ -71,10 +74,23 @@ int main(int argc, char *argv[])
       exit(1);
     }
 
+
     /* see if we're the parent or the child */
     if (pid == 0) {
+      printf("Child, memory location of iter:%p\n", &i);
+      num_children += 1; // if the processes shared the same memory,
+                         // this would create an infinite loop of
+                         // creating processes. Although it could exit
+                         // this loop if the main process got lucky
+                         // multiple times in a row
       child_code(i);
+    } else {
+      printf("Parent, memory location of iter:%p\n", &i);
     }
+      // Both the parrent and child processes share identical copies
+      // of the virtual memory space. Even though it looks like updating
+      // one of the values would change the other, it doesn't actually
+      // update the other process.
   }
 
   /* parent continues */
@@ -99,3 +115,9 @@ int main(int argc, char *argv[])
 
   exit(0);
 }
+
+/*
+ * The processes usually print in order in which they were created.
+ * This happens because each successively created process is told to
+ * sleep for a longer and longer time.
+ */
