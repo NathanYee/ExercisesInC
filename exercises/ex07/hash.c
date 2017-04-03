@@ -152,8 +152,8 @@ int hash_string(void *p)
     int i = 0;
 
     while (s[i] != 0) {
-	total += s[i];
-	i++;
+	    total += s[i];
+	    i++;
     }
     return total;
 }
@@ -188,7 +188,6 @@ int equal_int (void *ip, void *jp)
     } else {
       return 0;
     }
-
 }
 
 
@@ -205,9 +204,9 @@ int equal_string (void *s1, void *s2)
   char* str2 = (char*) s2;
   printf("equal_string: str1:%s, str2:%s\n", str1, str2);
   if (strcmp(str1, str2)){
-    return 1;
-  } else {
     return 0;
+  } else {
+    return 1;
   }
 }
 
@@ -222,7 +221,9 @@ int equal_string (void *s1, void *s2)
  */
 int equal_hashable(Hashable *h1, Hashable *h2)
 {
-  return h1->equal(h1->key, h2->key);
+  int equality = h1->equal(h1->key, h2->key);
+  printf("Equality: %d\n", equality);
+  return equality;
 }
 
 
@@ -362,8 +363,9 @@ void print_map(Map *map)
 /* Adds a key-value pair to a map. */
 void map_add(Map *map, Hashable *key, Value *value)
 {
-    // FILL THIS IN!
-
+  // FILL THIS IN!
+  int i = key->hash(key->key) % map->n;
+  map->lists[i] = prepend(key, value, map->lists[i]);
 }
 
 
@@ -371,7 +373,8 @@ void map_add(Map *map, Hashable *key, Value *value)
 Value *map_lookup(Map *map, Hashable *key)
 {
     // FILL THIS IN!
-    return NULL;
+    int i = key->hash(key->key) % map->n;
+    return list_lookup(map->lists[i], key);
 }
 
 
@@ -395,19 +398,29 @@ int main ()
     Node *node1 = make_node(hashable1, value1, NULL);
     print_node (node1);
 
+    puts("printed first node of list\n");
+
     Value *value2 = make_string_value ("Orange");
     Node *list = prepend(hashable2, value2, node1);
     print_list (list);
+
+    puts("printed the whole list\n");
 
     // run some test lookups
     Value *value = list_lookup (list, hashable1);
     print_lookup(value);
 
+    puts("printed first hashable1 lookup\n");
+
     value = list_lookup (list, hashable2);
     print_lookup(value);
 
+    puts("printed first hashable2 lookup\n");
+
     value = list_lookup (list, hashable3);
     print_lookup(value);
+
+    puts("printed first hashable3 lookup\n");
 
     // make a map
     Map *map = make_map(10);
