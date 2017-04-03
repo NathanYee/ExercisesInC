@@ -204,7 +204,7 @@ int equal_string (void *s1, void *s2)
   char* str2 = (char*) s2;
   printf("equal_string: str1:%s, str2:%s\n", str1, str2);
   if (strcmp(str1, str2)){
-    return 0;
+    return 0; // if the strings are the same strcmp returns 0
   } else {
     return 1;
   }
@@ -312,6 +312,10 @@ Node *prepend(Hashable *key, Value *value, Node *rest)
 Value *list_lookup(Node *list, Hashable *key)
 {
     // FILL THIS IN!
+    if (list == NULL) {
+      return NULL;
+    }
+
     if (equal_hashable(list->key, key)){
       return list->value;
     }
@@ -373,7 +377,9 @@ void map_add(Map *map, Hashable *key, Value *value)
 Value *map_lookup(Map *map, Hashable *key)
 {
     // FILL THIS IN!
+    puts("Starting map_lookup");
     int i = key->hash(key->key) % map->n;
+    printf("%d\n", i);
     return list_lookup(map->lists[i], key);
 }
 
@@ -383,7 +389,7 @@ void print_lookup(Value *value)
 {
     printf ("Lookup returned ");
     print_value (value);
-    printf ("\n");
+    printf ("\n\n");
 }
 
 
@@ -429,6 +435,8 @@ int main ()
 
     printf ("Map\n");
     print_map(map);
+
+    puts("Printed map\n");
 
     // run some test lookups
     value = map_lookup(map, hashable1);
