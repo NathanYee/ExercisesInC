@@ -222,23 +222,7 @@ int equal_string (void *s1, void *s2)
  */
 int equal_hashable(Hashable *h1, Hashable *h2)
 {
-  // hashable->key = key;
-  // hashable->hash = hash;
-  // hashable->equal = equal;
-  // switch (value->type) {
-  // case INT:
-	//   printf ("%d", value->i);
-	//   break;
-  // case STRING:
-	//   printf ("%s", value->s);
-  //   break;
-  // }
-  //
-  // if (h1->key == h2->key){
-  //   return 1;
-  // } else {
-  //   return 0;
-  // }
+  return h1->equal(h1->key, h2->key);
 }
 
 
@@ -304,12 +288,12 @@ void print_node(Node *node)
 /* Prints all the Nodes in a list. */
 void print_list(Node *node)
 {
-    if (node == NULL) {
-	return;
-    }
-    print_hashable(node->key);
-    printf ("value %p\n", node->value);
-    print_list(node->next);
+  if (node == NULL) {
+	   return;
+  }
+  print_hashable(node->key);
+  printf ("value %p\n", node->value);
+  print_list(node->next);
 }
 
 
@@ -327,7 +311,14 @@ Node *prepend(Hashable *key, Value *value, Node *rest)
 Value *list_lookup(Node *list, Hashable *key)
 {
     // FILL THIS IN!
-    return NULL;
+    if (equal_hashable(list->key, key)){
+      return list->value;
+    }
+    if (list->next == NULL){
+      return NULL;
+    } else {
+      return list_lookup(list->next, key);
+    }
 }
 
 
@@ -348,7 +339,7 @@ Map *make_map(int n)
     map->n = n;
     map->lists = (Node **) malloc (sizeof (Node *) * n);
     for (i=0; i<n; i++) {
-	map->lists[i] = NULL;
+	     map->lists[i] = NULL;
     }
     return map;
 }
@@ -360,10 +351,10 @@ void print_map(Map *map)
     int i;
 
     for (i=0; i<map->n; i++) {
-	if (map->lists[i] != NULL) {
-	    printf ("%d\n", i);
-	    print_list (map->lists[i]);
-	}
+	    if (map->lists[i] != NULL) {
+	      printf ("%d\n", i);
+	      print_list (map->lists[i]);
+      }
     }
 }
 
@@ -372,6 +363,7 @@ void print_map(Map *map)
 void map_add(Map *map, Hashable *key, Value *value)
 {
     // FILL THIS IN!
+
 }
 
 
