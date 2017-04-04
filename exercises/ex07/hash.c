@@ -366,10 +366,28 @@ void print_map(Map *map)
 }
 
 
+/* Get list index of a key-value pair in a map
+*
+* map: Map*
+* key: Hashable*
+*
+*
+* returns int
+*/
+int map_list_index(Map* map, Hashable* key)
+{
+  int i = key->hash(key->key) % map->n;
+  return i;
+}
+
+
 /* Adds a key-value pair to a map. */
 void map_add(Map *map, Hashable *key, Value *value)
 {
-  int i = key->hash(key->key) % map->n;
+  // determine which list to place new key-value pair
+  int i = map_list_index(map, key);
+
+  // add the key-value pair to the list
   map->lists[i] = prepend(key, value, map->lists[i]);
 }
 
@@ -378,10 +396,12 @@ void map_add(Map *map, Hashable *key, Value *value)
 Value *map_lookup(Map *map, Hashable *key)
 {
   puts("Starting map_lookup");
-  int i = key->hash(key->key) % map->n;
+  int i = map_list_index(map, key);
   printf("%d\n", i);
   return list_lookup(map->lists[i], key);
 }
+
+
 
 
 /* Prints the results of a test lookup. */
