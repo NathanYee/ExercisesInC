@@ -1,6 +1,8 @@
 /* Word counter using Glib library
 * Nathan Yee
 * Software Systems
+*
+* Usage: ./word_count laIncognita.txt
 */
 
 #include <stdio.h>
@@ -11,15 +13,26 @@
 
 int main(int argc, char** argv) {
     gssize length;
-    gchar *content, *filename = "laIncognita.txt";
+    gchar *content, *filename = argv[1];
+
     if (g_file_get_contents (filename, &content, &length, NULL)) {
         // Process contents
+        // count words based on space delimiter
         gchar** split = g_strsplit(content, " ", -1);
-        g_free (content);
-    }
+        gchar **ptr;
+        int word_counter = 0;
 
-    //GList* list = NULL;
-    //list = g_list_append(list, "Hello world!");
-    //printf("The first item is '%s'\n", (char *) g_list_first(list)->data);
+        // traverse array
+        for (ptr = split; *ptr; ptr++){
+            word_counter++;
+        }
+
+        // output number of words in list
+        printf("%d\n", word_counter);
+        g_free (content);
+    } else {
+        return 1;
+    }
+    
     return 0;
 }
