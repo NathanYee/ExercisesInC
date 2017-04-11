@@ -23,21 +23,34 @@ int main(int argc, char** argv) {
         g_strcanon(content, "abcdefghijklmnopqrstuvwxyz", ' ');
 
         // count words based on space delimiter
-        gchar** split = g_strsplit(content, " ", -1);
+        gchar **split = g_strsplit(content, " ", -1);
         gchar **ptr;
-        int word_counter = 0;
+
+        // create hash table to count number of words
+        GHashTable *word_counter_table = g_hash_table_new(g_str_hash, g_str_equal);
 
         // traverse array
-
-
-
+        int val;
         for (ptr = split; *ptr; ptr++){
-            printf("%s\n", *ptr);
-            word_counter++;
+            if (g_hash_table_contains(word_counter_table, *ptr)) {
+                // if key already in hash table - increment value by one
+                val = g_hash_table_lookup(word_counter_table, *ptr);
+                g_hash_table_replace(word_counter_table, *ptr, val+1);
+            } else {
+                // otherwise add key to hash table and set val to 1
+                g_hash_table_insert(word_counter_table, *ptr, 1);
+            }
         }
 
-        // output number of words in list
-        printf("%d\n", word_counter);
+        // get the keys of the hash table as a GList
+        GList* keys = g_hash_table_get_keys(word_counter_table);
+
+        // Descend through GList and print out key and value
+        while (keys != NULL){
+            printf("%s, %d\n", keys->data, g_hash_table_lookup(word_counter_table, keys->data));
+            keys = keys->next;
+        }
+
         g_free (content);
     } else {
         return 1;
