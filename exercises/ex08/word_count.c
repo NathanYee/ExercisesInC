@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <ctype.h> // for isspace
 #include <glib.h>
 #include <glib/gstdio.h> // file utilites
 
@@ -17,13 +18,21 @@ int main(int argc, char** argv) {
 
     if (g_file_get_contents (filename, &content, &length, NULL)) {
         // Process contents
+        // convert to lowercase
+        content = g_ascii_strdown(content, -1);
+        g_strcanon(content, "abcdefghijklmnopqrstuvwxyz", ' ');
+
         // count words based on space delimiter
         gchar** split = g_strsplit(content, " ", -1);
         gchar **ptr;
         int word_counter = 0;
 
         // traverse array
+
+
+
         for (ptr = split; *ptr; ptr++){
+            printf("%s\n", *ptr);
             word_counter++;
         }
 
@@ -33,6 +42,6 @@ int main(int argc, char** argv) {
     } else {
         return 1;
     }
-    
+
     return 0;
 }
