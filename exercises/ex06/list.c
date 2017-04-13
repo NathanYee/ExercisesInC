@@ -5,6 +5,8 @@ Based on an example from http://www.learn-c.org/en/Linked_lists
 Copyright 2016 Allen Downey
 License: Creative Commons Attribution-ShareAlike 3.0
 
+Allen's Solution:
+https://gist.github.com/AllenDowney/943a602153507d673dca30e76348efd1
 */
 
 #include <stdio.h>
@@ -56,9 +58,9 @@ void print_list(Node **list) {
 int pop(Node **list) {
     Node* head = *list;
     if (head == NULL){
-      return -1;
+      return -1; //hope val isn't -1
     }
-    *list = head->next;
+    *list = head->next; //don't bother freeing head
     return head->val;
 }
 
@@ -69,11 +71,11 @@ int pop(Node **list) {
  * val: value to add
  */
 void push(Node **list, int val) {
-    Node* head = *list;
+    Node* head = *list; // could just use *list throguhout
     printf("val to insert: %d\n", val);
-    Node* newHead = make_node(val, head);
+    Node* newHead = make_node(val, head); // head = *list
     printf("new head val: %d\n", newHead->val);
-    *list = newHead;
+    *list = newHead; // can't use head here
 }
 
 
