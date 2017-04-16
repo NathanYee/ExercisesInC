@@ -15,7 +15,7 @@
 // UTILITY FUNCTIONS
 
 /*  perror_exit
- *  
+ *
  *  Prints an error message and exits.
  *
  *  s: message to print
@@ -28,7 +28,7 @@ void perror_exit (char *s)
 }
 
 /*  check_malloc
- *  
+ *
  *  Calls malloc and checks the result.
  *
  *  size: number of bytes to allocate
@@ -46,7 +46,7 @@ void *check_malloc(int size)
 typedef sem_t Semaphore;
 
 /*  make_semaphore
- *  
+ *
  *  Allocates and initializes a Semaphore.
  *
  *  n: initial value
@@ -62,7 +62,7 @@ Semaphore *make_semaphore (int n)
 }
 
 /*  sem_signal
- *  
+ *
  *  Signals a semaphore.
  *
  *  sem: pointer to Semaphore
@@ -83,7 +83,7 @@ typedef struct {
 } Shared;
 
 /*  make_shared
- *  
+ *
  *  Initializes the environment shared by threads.
  *
  *  end: size of the shared array
@@ -97,7 +97,7 @@ Shared *make_shared (int end)
 
     shared->counter = 0;
     shared->end = end;
-  
+
     shared->array = check_malloc (shared->end * sizeof(int));
     for (i=0; i<shared->end; i++) {
         shared->array[i] = 0;
@@ -106,7 +106,7 @@ Shared *make_shared (int end)
 }
 
 /*  make_thread
- *  
+ *
  *  Allocates and initializes a POSIX thread.
  *
  *  entry: pointer to the entry function
@@ -126,7 +126,7 @@ pthread_t make_thread(void *(*entry)(void *), Shared *shared)
 }
 
 /*  join_thread
- *  
+ *
  *  Waits for the given thread to exit.
  *
  *  thread: ID of the thread we should wait for
@@ -139,7 +139,7 @@ void join_thread (pthread_t thread)
 }
 
 /*  child_code
- *  
+ *
  *  Increments the values in an array.
  *
  *  If access to shared->counter is synchonized, every element in
@@ -154,7 +154,7 @@ void join_thread (pthread_t thread)
  */
 void child_code (Shared *shared)
 {
-    printf ("Starting child at counter %d\n", shared->counter);
+    // printf ("Starting child at counter %d\n", shared->counter);
 
     while (1) {
 	    if (shared->counter >= shared->end) {
@@ -164,13 +164,13 @@ void child_code (Shared *shared)
 	    shared->counter++;
 
 	    if (shared->counter % 100000 == 0) {
-	        printf ("%d\n", shared->counter);
+	        // printf ("%d\n", shared->counter);
 	    }
     }
 }
 
 /*  entry
- *  
+ *
  *  Starting point for child threads,
  *
  *  arg: pointer to the shared environment
@@ -180,12 +180,12 @@ void *entry (void *arg)
 {
     Shared *shared = (Shared *) arg;
     child_code (shared);
-    printf ("Child done.\n");
+    // printf ("Child done.\n");
     pthread_exit (NULL);
 }
 
 /*  check_array
- *  
+ *
  *  Checks whether every element of the shared array is 1.
  *  Prints the number of synchronization errors.
  *
@@ -196,16 +196,16 @@ void check_array (Shared *shared)
 {
     int i, errors=0;
 
-    printf ("Checking...\n");
+    // printf ("Checking...\n");
 
     for (i=0; i<shared->end; i++) {
 	    if (shared->array[i] != 1) errors++;
     }
-    printf ("%d errors.\n", errors);
+    // printf ("%d errors.\n", errors);
 }
 
 /*  main
- *  
+ *
  *  Creates the given number of children and runs them concurrently.
  *
  */

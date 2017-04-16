@@ -3,6 +3,12 @@ Semaphores, available from Green Tea Press, greenteapress.com
 
 Copyright 2014 Allen B. Downey
 License: Creative Commons Attribution-ShareAlike 3.0
+
+counter takes 4.54 seconds
+counter_mutex takes 22.96 seconds
+counter_mutex has taken 17.42 additional seconds of overhead.
+This is because it we are signaling and waiting our semaphore
+every time we increment the counter .
 */
 
 #include <stdio.h>
@@ -157,14 +163,14 @@ void join_thread (pthread_t thread)
 void child_code (Shared *shared)
 {
   int in_the_stack = 21;
-  printf("Address of stack integer: %p\n", &in_the_stack);
+  // printf("Address of stack integer: %p\n", &in_the_stack);
 
   static int static_variable = 10;
   static_variable++;
-  printf("%d\n", static_variable);
+  // printf("%d\n", static_variable);
 
 
-  printf ("Starting child at counter %d\n", shared->counter);
+  // printf ("Starting child at counter %d\n", shared->counter);
   while (1) {
     if (shared->counter >= shared->end) {
       return;
@@ -173,7 +179,7 @@ void child_code (Shared *shared)
     shared->array[shared->counter]++;
     shared->counter++;
     if (shared->counter % 100000 == 0) {
-      printf ("%d\n", shared->counter);
+      // printf ("%d\n", shared->counter);
     }
     sem_signal(shared->sem);
   }
@@ -190,7 +196,7 @@ void *entry (void *arg)
 {
   Shared *shared = (Shared *) arg;
   child_code (shared);
-  printf ("Child done.\n");
+  // printf ("Child done.\n");
   pthread_exit (NULL);
 }
 
@@ -206,12 +212,12 @@ void check_array (Shared *shared)
 {
   int i, errors=0;
 
-  printf ("Checking...\n");
+  // printf ("Checking...\n");
 
   for (i=0; i<shared->end; i++) {
     if (shared->array[i] != 1) errors++;
   }
-  printf ("%d errors.\n", errors);
+  // printf ("%d errors.\n", errors);
 }
 
 /*  main
