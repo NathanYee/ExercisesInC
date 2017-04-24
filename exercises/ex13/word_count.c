@@ -18,82 +18,82 @@ Note: this version leaks memory.
 
 /* Represents a word-frequency pair. */
 typedef struct {
-    gint freq;
-    gchar *word;
+  gint freq;
+  gchar *word;
 } Pair;
 
 
 /* Compares two key-value pairs by frequency. */
 gint compare_pair (gpointer v1, gpointer v2, gpointer user_data)
 {
-    Pair *p1 = (Pair *) v1;
-    Pair *p2 = (Pair *) v2;
-    return p1->freq - p2->freq;
+  Pair *p1 = (Pair *) v1;
+  Pair *p2 = (Pair *) v2;
+  return p1->freq - p2->freq;
 }
 
 
 /* Iterator that prints pairs. */
 void pair_printor (gpointer value, gpointer user_data)
 {
-    Pair *pair = (Pair *) value;
-    printf ("%d\t %s\n", pair->freq, pair->word);
+  Pair *pair = (Pair *) value;
+  printf ("%d\t %s\n", pair->freq, pair->word);
 }
 
 
 /* Iterator that prints keys and values. */
 void printor (gpointer key, gpointer value, gpointer user_data)
 {
-    printf (user_data, key, * (gint *) value);
+  printf (user_data, key, * (gint *) value);
 }
 
 
 /* Iterator that add key-value pairs to a sequence. */
 void accumulator (gpointer key, gpointer value, gpointer user_data)
 {
-    GSequence *seq = (GSequence *) user_data;
-    Pair *pair = g_new(Pair, 1);
-    pair->word = (gchar *) key;
-    pair->freq = * (gint *) value;
+  GSequence *seq = (GSequence *) user_data;
+  Pair *pair = g_new(Pair, 1);
+  pair->word = (gchar *) key;
+  pair->freq = * (gint *) value;
 
-    g_sequence_insert_sorted (seq, 
-			      (gpointer) pair, 
-			      (GCompareDataFunc) compare_pair,
-			      NULL);
-}
+  g_sequence_insert_sorted (seq,
+    (gpointer) pair,
+    (GCompareDataFunc) compare_pair,
+    NULL);
+  }
 
-/* Increments the frequency associated with key. */
-void incr (GHashTable* hash, gchar *key)
-{
+  /* Increments the frequency associated with key. */
+  void incr (GHashTable* hash, gchar *key)
+  {
     gint *val = (gint *) g_hash_table_lookup (hash, key);
 
     if (val == NULL) {
-	gint *val1 = g_new (gint, 1);
-	*val1 = 1;
-	g_hash_table_insert (hash, key, val1);
+      gint *val1 = g_new (gint, 1);
+      *val1 = 1;
+      g_hash_table_insert (hash, key, val1);
     } else {
-	*val += 1;
+      *val += 1;
     }
-}
+  }
 
-int main (int argc, char** argv)
-{
+  int main (int argc, char** argv)
+  {
     gchar *filename;
 
     // open the file
     if (argc > 1) {
-	filename = argv[1];
+      filename = argv[1];
     } else {
-	filename = "emma.txt";
+      filename = "emma.txt";
     }
 
     FILE *fp = g_fopen(filename, "r");
     if (fp == NULL) {
-	perror (filename);
-	exit (-10);
+      perror (filename);
+      exit (-10);
     }
 
     /* string array is a (two-L) NULL terminated array of pointers to
-       (one-L) NUL terminated strings */
+    (one-L) NUL terminated strings */
     gchar **array;
     gchar line[128];
     GHashTable* hash = g_hash_table_new (g_str_hash, g_str_equal);
@@ -101,13 +101,13 @@ int main (int argc, char** argv)
 
     // read lines from the file and build the hash table
     while (1) {
-	gchar *res = fgets (line, sizeof(line), fp);
-	if (res == NULL) break;
+      gchar *res = fgets (line, sizeof(line), fp);
+      if (res == NULL) break;
 
-	array = g_strsplit(line, " ", 0);
-	for (i=0; array[i] != NULL; i++) {
-	    incr(hash, array[i]);
-	}
+      array = g_strsplit(line, " ", 0);
+      for (i=0; array[i] != NULL; i++) {
+        incr(hash, array[i]);
+      }
     }
     fclose (fp);
 
@@ -127,4 +127,4 @@ int main (int argc, char** argv)
     g_sequence_free (seq);
 
     return 0;
-}
+  }
