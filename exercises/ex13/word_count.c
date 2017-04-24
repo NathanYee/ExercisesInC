@@ -47,6 +47,13 @@ void printor (gpointer key, gpointer value, gpointer user_data)
 }
 
 
+/* Key and Value destroyer functions */
+void free_data (gpointer data)
+{
+  free (data);
+}
+
+
 /* Iterator that add key-value pairs to a sequence. */
 void accumulator (gpointer key, gpointer value, gpointer user_data)
 {
@@ -55,10 +62,7 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
   pair->word = (gchar *) key;
   pair->freq = * (gint *) value;
 
-  g_sequence_insert_sorted (seq,
-    (gpointer) pair,
-    (GCompareDataFunc) compare_pair,
-    NULL);
+  g_sequence_insert_sorted (seq, (gpointer) pair, (GCompareDataFunc) compare_pair, NULL);
   }
 
   /* Increments the frequency associated with key. */
@@ -96,7 +100,7 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
     (one-L) NUL terminated strings */
     gchar **array;
     gchar line[128];
-    GHashTable* hash = g_hash_table_new (g_str_hash, g_str_equal);
+    GHashTable* hash = g_hash_table_new_full (g_str_hash, g_str_equal, free_data, free_data);
     int i;
 
     // read lines from the file and build the hash table
@@ -123,6 +127,7 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
 
     // try (unsuccessfully) to free everything
     // (in a future exercise, we will fix the memory leaks)
+    // g_hash_table_remove_all(hash);
     g_hash_table_destroy (hash);
     g_sequence_free (seq);
 
