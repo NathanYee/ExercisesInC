@@ -41,7 +41,7 @@ int pop(Node **head) {
 
   next_node = (*head)->next;
   retval = (*head)->val;
-  free(*head);
+  free(*head); //we can free this
   *head = next_node;
 
   return retval;
@@ -134,6 +134,18 @@ Node *make_something() {
   return node3;
 }
 
+// Frees a list
+int free_list(Node* head) {
+  Node *current = head;
+
+  while (current != NULL) {
+    Node* temp = current;
+    current = current->next;
+    free(temp);
+  }
+  return 0;
+}
+
 int main() {
   // make a list of even numbers
   Node *test_list = make_node(2, NULL);
@@ -152,6 +164,7 @@ int main() {
 
   printf("test_list\n");
   print_list(test_list);
+  free_list(test_list);
 
   // make an empty list
   printf("empty\n");
@@ -160,9 +173,10 @@ int main() {
   // add an element to the empty list
   insert_by_index(&empty, 1, 0);
   print_list(empty);
+  free_list(empty);
 
   Node *something = make_something();
-  free(something);
+  free_list(something);
 
   return 0;
 }
