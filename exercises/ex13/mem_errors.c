@@ -39,9 +39,9 @@ int main ()
     read_element(array2, 100);
 
     // and it catches use after free
-    free(use_after_free);
-    *use_after_free = 17;
-    
+    // free(use_after_free);
+    // *use_after_free = 17;
+
     // never_free is definitely lost
     *never_free = 17;
 
@@ -50,9 +50,12 @@ int main ()
 
     // but this one doesn't
     free_anything(&never_allocated);
-    
+
+
     free(free_twice);
-    free(free_twice);
+    free(use_after_free);
+    free(never_free);
+    free(array2);
 
     return 0;
 }
