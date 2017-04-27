@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
+
+void error(char *msg)
+{
+  fprintf(stderr, "%s: %s\n", msg, strerror(errno));
+  exit(1);
+}
 
 int main(int argc, char *argv[])
 {
@@ -16,12 +23,19 @@ int main(int argc, char *argv[])
   };
 
   int listener_d = socket(PF_INET, SOCK_STREAM, 0);
+  
+  int reuse = 1;
+  if (setsockopt(listener_d, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(int)) == -1) {
+    error("Can't set the reuse option on the socket");
+  }
 
   struct sockaddr_in name;
   name.sin_family = PF_INET;
   name.sin_port = (in_port_t)htons(30000);
   name.sin_addr.s_addr = htonl(INADDR_ANY);
-  bind(listener_d, (struct sockaddr *) &name, sizeof(name));
+  if (bind(listener_d, (struct sockaddr *) &name, sizeof(name)) == -1) {
+    error("Can't bind the port");
+  }
   listen(listener_d, 10);
   puts("Waiting for connection");
   while (1) {
