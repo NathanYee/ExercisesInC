@@ -59,11 +59,12 @@ int queue_full(Queue *queue)
 }
 
 void queue_push(Queue *queue, int item) {
+  // puts("push called");
   mutex_lock(queue->mutex);
   while (queue_full(queue)) {
-    cond_wait(queue->nonfull, queue->mutex);    
+    cond_wait(queue->nonfull, queue->mutex);
   }
-  
+  // puts("pushing item");
   queue->array[queue->next_in] = item;
   queue->next_in = queue_incr(queue, queue->next_in);
   mutex_unlock(queue->mutex);
@@ -71,11 +72,12 @@ void queue_push(Queue *queue, int item) {
 }
 
 int queue_pop(Queue *queue) {
+  // puts("pop called");
   mutex_lock(queue->mutex);
   while (queue_empty(queue)) {
     cond_wait(queue->nonempty, queue->mutex);
   }
-  
+  // puts("poping item");
   int item = queue->array[queue->next_out];
   queue->next_out = queue_incr(queue, queue->next_out);
   mutex_unlock(queue->mutex);
@@ -170,7 +172,7 @@ void queue_test()
   assert(queue_full(queue));
   for (i=0; i<10; i++) {
     item = queue_pop(queue);
-  }  
+  }
   assert(item == 19);
 }
 

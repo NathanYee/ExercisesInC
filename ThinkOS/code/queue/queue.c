@@ -54,7 +54,7 @@ void queue_push(Queue *queue, int item) {
   if (queue_full(queue)) {
     perror_exit("queue is full");
   }
-  
+
   queue->array[queue->next_in] = item;
   queue->next_in = queue_incr(queue, queue->next_in);
 }
@@ -63,7 +63,7 @@ int queue_pop(Queue *queue) {
   if (queue_empty(queue)) {
     perror_exit("queue is empty");
   }
-  
+
   int item = queue->array[queue->next_out];
   queue->next_out = queue_incr(queue, queue->next_out);
   return item;
@@ -156,7 +156,7 @@ void queue_test()
   assert(queue_full(queue));
   for (i=0; i<10; i++) {
     item = queue_pop(queue);
-  }  
+  }
   assert(item == 19);
 }
 
