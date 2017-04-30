@@ -25,7 +25,7 @@ typedef struct {
 /* Key and Value destroyer functions */
 void free_data (gpointer data)
 {
-  printf ("freeing data");
+  printf ("freeing data\n");
   g_free (data);
 }
 
@@ -58,8 +58,10 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
 {
     GSequence *seq = (GSequence *) user_data;
     Pair *pair = g_new(Pair, 1);
-    pair->word = (gchar *) key;
-    pair->freq = * (gint *) value;
+    pair->word = g_strdup((gchar *) key);
+    gint *tmp = g_new(gint, 1);
+    *tmp = * (gint *) value;
+    pair->freq = *tmp;
 
     g_sequence_insert_sorted (seq,
 			      (gpointer) pair,
@@ -102,7 +104,7 @@ int main (int argc, char** argv)
        (one-L) NUL terminated strings */
     gchar **array;
     gchar line[128];
-    GHashTable* hash = g_hash_table_new (g_str_hash, g_str_equal);
+    GHashTable* hash = g_hash_table_new_full (g_str_hash, g_str_equal, free_data, free_data);
     int i;
 
     // read lines from the file and build the hash table
@@ -122,6 +124,7 @@ int main (int argc, char** argv)
 
     // iterate the hash table and build the sequence
     GSequence *seq = g_sequence_new (free_data);
+    // GSequence *seq = g_sequence_new (NULL);
     g_hash_table_foreach (hash,  (GHFunc) accumulator, (gpointer) seq);
 
     // iterate the sequence and print the pairs
@@ -129,7 +132,9 @@ int main (int argc, char** argv)
 
     // try (unsuccessfully) to free everything
     // (in a future exercise, we will fix the memory leaks)
+    puts("Free g_hash");
     g_hash_table_destroy (hash);
+    puts("Free g_sequence");
     g_sequence_free (seq);
 
     return 0;
