@@ -6,7 +6,24 @@ License: Creative Commons Attribution-ShareAlike 3.0
 Started with ex-ghashtable-3.c from
 http://www.ibm.com/developerworks/linux/tutorials/l-glib/section5.html
 
-Note: this version leaks memory.
+==7842== HEAP SUMMARY:
+==7842==     in use at exit: 18,604 bytes in 6 blocks
+==7842==   total heap usage: 476,670 allocs, 476,664 frees, 9,387,092 bytes allocated
+==7842==
+==7842== Searching for pointers to 6 not-freed blocks
+==7842== Checked 110,760 bytes
+==7842==
+==7842== LEAK SUMMARY:
+==7842==    definitely lost: 0 bytes in 0 blocks
+==7842==    indirectly lost: 0 bytes in 0 blocks
+==7842==      possibly lost: 0 bytes in 0 blocks
+==7842==    still reachable: 18,604 bytes in 6 blocks
+==7842==         suppressed: 0 bytes in 0 blocks
+==7842== Reachable blocks (those to which a pointer was found) are not shown.
+==7842== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7842==
+==7842== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==7842== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 */
 
