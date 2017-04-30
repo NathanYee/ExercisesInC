@@ -25,7 +25,7 @@ typedef struct {
 /* Key and Value destroyer functions */
 void free_data (gpointer data)
 {
-  printf ("freeing data\n");
+  // printf ("freeing data\n");
   g_free (data);
 }
 
@@ -58,10 +58,8 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
 {
     GSequence *seq = (GSequence *) user_data;
     Pair *pair = g_new(Pair, 1);
-    pair->word = g_strdup((gchar *) key);
-    gint *tmp = g_new(gint, 1);
-    *tmp = * (gint *) value;
-    pair->freq = *tmp;
+    pair->word = (gchar*) key;
+    pair->freq = * (gint *) value;
 
     g_sequence_insert_sorted (seq,
 			      (gpointer) pair,
@@ -139,6 +137,7 @@ int main (int argc, char** argv)
     g_hash_table_destroy (hash);
     puts("Free g_sequence");
     g_sequence_free (seq);
+
 
     return 0;
 }
