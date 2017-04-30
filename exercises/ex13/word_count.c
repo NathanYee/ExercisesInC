@@ -77,7 +77,7 @@ void incr (GHashTable* hash, gchar *key)
     if (val == NULL) {
 	gint *val1 = g_new (gint, 1);
 	*val1 = 1;
-	g_hash_table_insert (hash, key, val1);
+	g_hash_table_insert (hash, g_strdup(key), val1);
     } else {
 	*val += 1;
     }
@@ -102,13 +102,14 @@ int main (int argc, char** argv)
 
     /* string array is a (two-L) NULL terminated array of pointers to
        (one-L) NUL terminated strings */
-    gchar **array;
+
     gchar line[128];
     GHashTable* hash = g_hash_table_new_full (g_str_hash, g_str_equal, free_data, free_data);
     int i;
 
     // read lines from the file and build the hash table
     while (1) {
+  gchar **array;
 	gchar *res = fgets (line, sizeof(line), fp);
 	if (res == NULL) break;
 
@@ -116,7 +117,9 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
+  g_strfreev(array);
     }
+
     fclose (fp);
 
     // print the hash table
