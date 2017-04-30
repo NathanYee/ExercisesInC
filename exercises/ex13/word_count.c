@@ -42,7 +42,6 @@ typedef struct {
 /* Key and Value destroyer functions */
 void free_data (gpointer data)
 {
-  // printf ("freeing data\n");
   g_free (data);
 }
 
@@ -124,7 +123,7 @@ int main (int argc, char** argv)
 
     // read lines from the file and build the hash table
     while (1) {
-  gchar **array;
+  gchar **array; // create array here
 	gchar *res = fgets (line, sizeof(line), fp);
 	if (res == NULL) break;
 
@@ -132,7 +131,7 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
-  g_strfreev(array);
+  g_strfreev(array); // then destroy array here
     }
 
     fclose (fp);
